@@ -78,49 +78,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Typing Animation Effect
-document.addEventListener('DOMContentLoaded', () => {
-    const heroTitle = document.querySelector('.hero h1');
-    const heroText = document.querySelector('.hero p');
-    
-    if (heroTitle && heroText) {
-        const titleText = heroTitle.textContent;
-        const descText = heroText.textContent;
-        
-        heroTitle.textContent = '';
-        heroText.textContent = '';
-        
-        let titleIndex = 0;
-        let descIndex = 0;
-        
-        function typeTitle() {
-            if (titleIndex < titleText.length) {
-                heroTitle.textContent += titleText.charAt(titleIndex);
-                titleIndex++;
-                setTimeout(typeTitle, 100);
-            } else {
-                setTimeout(typeDesc, 500);
-            }
-        }
-        
-        function typeDesc() {
-            if (descIndex < descText.length) {
-                heroText.textContent += descText.charAt(descIndex);
-                descIndex++;
-                setTimeout(typeDesc, 50);
-            }
-        }
-        
-        setTimeout(typeTitle, 500);
-    }
-});
-
 // Add animations to skill tags
 document.addEventListener('DOMContentLoaded', () => {
     const skillTags = document.querySelectorAll('.skill-tags span');
     
     skillTags.forEach((tag, index) => {
-        tag.style.animationDelay = `${index * 0.1}s`;
+        tag.style.animationDelay = `${index * 0.05}s`;
         tag.classList.add('animated');
     });
 });
@@ -144,8 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             
-            // Here you would typically send the form data to a server
-            // For now, we'll just simulate a successful submission
             const submitBtn = contactForm.querySelector('button[type="submit"]');
             const originalText = submitBtn.textContent;
             
@@ -163,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Comic Sound Effects
-function createComicEffect(element, text, duration = 2000) {
+function createComicEffect(element, text, duration = 1200) {
     const effect = document.createElement('div');
     effect.textContent = text;
     effect.classList.add(text.toLowerCase());
@@ -183,9 +144,8 @@ function createComicEffect(element, text, duration = 2000) {
     }, duration);
 }
 
-// Add comic-style effect to page
+// Add comic-style effect to page (Card rotations on hover)
 document.addEventListener('DOMContentLoaded', () => {
-    // Random rotation for cards
     const cards = document.querySelectorAll('.project-card, .achievement-card');
     
     cards.forEach(card => {
@@ -216,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Intersection Observer for Elements
+// Intersection Observer for scroll reveal animations
 document.addEventListener('DOMContentLoaded', () => {
     const observerOptions = {
         threshold: 0.1,
@@ -231,51 +191,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
     
-    // Observe all sections and elements that should animate in
-    document.querySelectorAll('section, .project-card, .achievement-card, .skill-category').forEach(item => {
+    // Observe sections and animated elements
+    document.querySelectorAll('section, .project-card, .achievement-card, .skill-category, .currently-building-card, .stats-card').forEach(item => {
         appearOnScroll.observe(item);
     });
-});
-
-// Add particle effect to hero section
-document.addEventListener('DOMContentLoaded', () => {
-    const hero = document.querySelector('.hero');
-    
-    if (!hero) return;
-    
-    const particles = 20;
-    
-    for (let i = 0; i < particles; i++) {
-        const particle = document.createElement('div');
-        particle.classList.add('particle');
-        
-        // Random properties
-        const size = Math.random() * 20 + 10;
-        const posX = Math.random() * 100;
-        const posY = Math.random() * 100;
-        const delay = Math.random() * 5;
-        const duration = Math.random() * 10 + 10;
-        
-        // Apply styles
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        particle.style.left = `${posX}%`;
-        particle.style.top = `${posY}%`;
-        particle.style.animationDelay = `${delay}s`;
-        particle.style.animationDuration = `${duration}s`;
-        
-        // Set random shape and color
-        const shapes = ['circle', 'square', 'triangle'];
-        const colors = ['var(--primary-color)', 'var(--secondary-color)', 'var(--accent-color)'];
-        
-        const shape = shapes[Math.floor(Math.random() * shapes.length)];
-        const color = colors[Math.floor(Math.random() * colors.length)];
-        
-        particle.classList.add(shape);
-        particle.style.backgroundColor = color;
-        
-        hero.appendChild(particle);
-    }
 });
 
 // Interactive Social Links
